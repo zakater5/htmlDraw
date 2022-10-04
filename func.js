@@ -32,19 +32,6 @@ platno.onmouseup = function(){
 
 ///////////////////////////////////////////////////////////////////////////
 
-function insertElements(){
-    document.write("<h1>Glavni naslov za primer v js</h1>");
-    document.write("<p><b>Bessedilo v odstavku</b></p>");
-    document.write("<div style='background-color: lightblue;'>Uporaba div narekovanji</div>");
-    document.write("<div style='background-color: lightyellow;'>eh</div>");
-    document.write("<ul> <li>postavka 1</li> <li>postavka 2</li> <li>postavka 3</li> </ul>")
-    document.write("<a href='http://www.sc-krsko.si/'>" +
-                    "<img src='00.jpg' alr='slika></a>");
-}
-testFunctionB.onclick = function(){
-    insertElements();
-}
-
 ///////////////////////////////////////////////////////////////////////////
 
 var PosX1;
@@ -56,7 +43,7 @@ var count = 0;
 platno.onmousemove = function(event){
     var posX;
     var posY;
-    if(mouseDown && !placingText){
+    if(mouseDown){
         posX = event.clientX + Xoffset;
         posY = event.clientY + Yoffset;  
         drawDot(posX, posY);
@@ -73,11 +60,6 @@ platno.onmousemove = function(event){
             drawConnectionLine();
         }  
         canDraw = true;
-    } 
-    
-    if(placingText && !mouseDown){
-        textRect.centerX = event.clientX;
-        textRect.centerY = event.clientY;
     }     
 };
 
@@ -128,18 +110,6 @@ greenColorB.onclick = function(){
 
 clearButton.onclick = function(){
     risba.clearRect(0, 0, platno.width, platno.height);
-}
-
-var placingText = false;
-var textRect;
-textPlacement.onmousedown = function(event){
-    if(placingText == false){
-        placingText = true;
-        risba.setLineDash([6]);
-        textRect = risba.strokeRect(event.clientX + Xoffset, event.clientY + Xoffset, 50, 50);
-    } else {
-        placingText = false;
-    }
 }
 
 // Key pressed //
